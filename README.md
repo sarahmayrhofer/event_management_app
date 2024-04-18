@@ -10,7 +10,7 @@ The repo should be cloned directly into the folder ```C:\xampp\htdocs```
 2) Open PowerShell
 3) Navigate to ```C:\xampp\htdocs\eventmgr``` in PowerShell
 4) Ensure that Docker is running.
-5) Enter ```docker-compose up --detach``` in PowerShell
+5) Execute the command ```docker-compose up --detach``` in PowerShell
 6) Close PowerShell
 7) Wait for the container to start up. You can check the progress of keycloak starting up in Docker Desktop by clicking on the Container to view its logs
 8) Once the container has finished starting up, see if you can access Keycloak on ```https://localhost:8081/admin```
