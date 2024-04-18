@@ -5,7 +5,8 @@
 
     session_start(); // Also continues existing session
 
-    $idProviderUrl = 'localhost:8080/realms/demo-realm';
+    $keycloakPort = '8081';
+    $idProviderUrl = 'localhost:' . $keycloakPort . '/realms/demo-realm';
     $clientId = 'demo_client';
     $clientSecret = 'eSbmLe9GB3K7FUrMmeeHXVOg03W87Yy7';
 
