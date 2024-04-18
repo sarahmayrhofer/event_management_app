@@ -3,7 +3,7 @@ This is the event management application made by Team F for KV Service Engineeri
 
 The repo should be cloned directly into the folder ```C:\xampp\htdocs```
 
-##Setting up Keycloak##
+## Setting up Keycloak
 *Note*: This assumes that you've already created a user called "keycloak" in phpMyAdmin and granted it all privileges. If the keycloak database already exists, you should delete it by executing the SQL statement ```DROP DATABASE keycloak```
 
 1) Pull the repo to update all files
