@@ -12,7 +12,8 @@ The repo should be cloned directly into the folder ```C:\xampp\htdocs```
 4) Ensure that Docker is running.
 5) Execute the command ```docker-compose up --detach``` in PowerShell
 6) Close PowerShell
-7) Wait for the container to start up. You can check the progress of keycloak starting up in Docker Desktop by clicking on the Container to view its logs
+7) Wait for the container to start up. You can check the progress of keycloak starting up in Docker Desktop by clicking on the Container to view its logs. The container is ready when you can see the message ```WARN  [org.keycloak.quarkus.runtime.KeycloakMain] (main) Running the server in development mode. DO NOT use this configuration in production.```
+![grafik](https://github.com/k12119624/eventmgr/assets/122382776/b143dc0d-1581-43a3-a7a5-b7bda528b0ee)
 8) Once the container has finished starting up, see if you can access Keycloak on ```https://localhost:8081/admin```
 9) If you can log into Keycloak using the username "_admin_" and the password "_admin_", everything should be fine.
 10) There is no need for further configuration, as the demo-realm and demo_client have been imported automatically.
