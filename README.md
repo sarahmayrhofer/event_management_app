@@ -4,7 +4,8 @@ This is the event management application made by Team F for KV Service Engineeri
 The repo should be cloned directly into the folder ```C:\xampp\htdocs```
 
 ## Setting up Keycloak
-*Note*: This assumes that you've already created a user called "keycloak" in phpMyAdmin and granted it all privileges. If the keycloak database already exists, you should delete it by going to localhost/phpmyadmin and executing the SQL statement ```DROP DATABASE keycloak```
+*Note*: This assumes that you've already created a user called "keycloak" in phpMyAdmin and granted it all privileges. If the keycloak database already exists, you should delete it by going to ```localhost/phpmyadmin``` and executing the SQL statement ```DROP DATABASE keycloak```
+![grafik](https://github.com/k12119624/eventmgr/assets/122382776/513b99a9-763c-4faa-9143-795ff83f2e32)
 
 1) Pull the repo to update all files
 2) Open PowerShell
