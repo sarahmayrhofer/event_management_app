@@ -15,8 +15,8 @@
         }
     }
 
-    $sql = "SELECT * FROM user_entity WHERE id=?";
-    $statement = $mysqli->prepare($sql);
+    $sql = "SELECT * FROM user_entity";
+    $result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -30,5 +30,14 @@
     <!-- Titelleiste dynamisch einbinden -->
     <?php include 'header-bar.php' ?>
     <h1>Listenansicht</h1>
+    <?php
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo "id: " . $row["id"]. " - Name: " . $row["name"]. "<br>";
+            }
+        } else {
+            echo "0 results";
+        }
+    ?>
 </body>
 </html>
