@@ -16,11 +16,13 @@
     $logoutDisabled = "disabled";
 
     $msg = "You are not allowed to see this.";
+    $roles = "You are not logged in.";
 
     if(isset($_SESSION['id'])) {
         $msg = "Welcome, authorized user.";
         $loginDisabled = "disabled";
         $logoutDisabled = "";
+        $roles = "Your roles: " . implode($_SESSION['roles']);
     }
 ?>
 
@@ -34,6 +36,7 @@
 <body>
     <?php
         echo "<h1>" . $msg . "</h1>";
+        echo "<p>" . $roles . "</p>";
     ?>
 
     <!-- https://www.geeksforgeeks.org/how-to-call-php-function-on-the-click-of-a-button/ -->
