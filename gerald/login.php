@@ -12,7 +12,11 @@
         $_SESSION['userId'] = $oidc->requestUserInfo('sub');
         $_SESSION['roles'] = $oidc->requestUserInfo('roles');
 
-        header('Location: ' . 'index.php');
+        if(str_contains(implode($_SESSION['roles']), 'Administrator')) { # Prüfen, ob "Administrator" zu den Rollen des Benutzers gehört
+            header('Location: ' . 'list-view.php');
+        } else {
+            header('Location: ' . 'detail-view.php');
+        }
     }
 ?>
 
