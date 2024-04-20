@@ -9,6 +9,7 @@
         $_SESSION['id'] = $oidc->getIdToken();
         session_regenerate_id(true); // good practice
 
+        $_SESSION['userId'] = $oidc->requestUserInfo('sub');
         $_SESSION['roles'] = $oidc->requestUserInfo('roles');
 
         header('Location: ' . 'index.php');

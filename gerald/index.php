@@ -19,7 +19,7 @@
     $roles = "You are not logged in.";
 
     if(isset($_SESSION['id'])) {
-        $msg = "Welcome, authorized user.";
+        $msg = "Welcome, authorized user " . $_SESSION['userId'];
         $loginDisabled = "disabled";
         $logoutDisabled = "";
         $roles = "Your roles: " . implode($_SESSION['roles']);
