@@ -29,7 +29,7 @@ The repo should be cloned directly into the folder ```C:\xampp\htdocs```
 ## Setting up the database
 1) Navigate to [the phpMyAdmin SQL Prompt for our database](http://localhost/phpmyadmin/index.php?route=/database/sql&db=keycloak) (at the moment, we're just using the keycloak database, but ideally we would eventually move to our own).
 2) Execute [the create table statement saved in booking.sql](https://github.com/k12119624/eventmgr/blob/main/booking.sql) (ignore the error on line 4, as it appears to be a false alarm).
-![grafik](https://github.com/k12119624/eventmgr/assets/122382776/3986c793-2593-4924-bffa-aa061b95876d)
+![grafik](https://github.com/k12119624/eventmgr/assets/122382776/655b5f99-62f8-4444-b0bf-be7e9c9dc5fc)
 3) *Optional:* If you would like to insert some test data, you can do so on [the appropriate page in phpMyAdmin](http://localhost/phpmyadmin/index.php?route=/table/change&db=keycloak&table=booking). You can even insert more than two rows at once by using increasing the number of insertions, using the control marked in green.
 ![grafik](https://github.com/k12119624/eventmgr/assets/122382776/bd78da4e-8e5e-4a30-b091-81205684357b)
 4) If something changes about our database in the future, you may need to execute these steps again.
