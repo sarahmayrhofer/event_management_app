@@ -7,7 +7,7 @@ The repo should be cloned directly into the folder ```C:\xampp\htdocs```
 *Note*: This assumes that you've already created a user called "keycloak" in phpMyAdmin and granted it all privileges.
 
 ### Delete the keycloak database
-1) Navigate to ```localhost/phpmyadmin```
+1) Navigate to [the phpMyAdmin SQL prompt](http://localhost/phpmyadmin/index.php?route=/server/sql)
 2) Execute the SQL statement ```DROP DATABASE keycloak```
 ![grafik](https://github.com/k12119624/eventmgr/assets/122382776/513b99a9-763c-4faa-9143-795ff83f2e32)
 
@@ -27,4 +27,5 @@ The repo should be cloned directly into the folder ```C:\xampp\htdocs```
 12) If the Keycloak configuration changes in the future, you may need to execute these steps again.
 
 ## Setting up the database
-For now, we're simply creating our single table inside the same database as keycloak.
+1) Navigate to [the phpMyAdmin SQL Prompt for our database](http://localhost/phpmyadmin/index.php?route=/database/sql&db=keycloak) (at the moment, we're just using the keycloak database, but ideally we would eventually move to our own).
+2) Execute [the create table statement saved in booking.sql](https://github.com/k12119624/eventmgr/blob/main/booking.sql)
