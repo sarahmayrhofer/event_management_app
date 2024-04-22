@@ -32,6 +32,6 @@ The repo should be cloned directly into the folder ```C:\xampp\htdocs```
 ![grafik](https://github.com/k12119624/eventmgr/assets/122382776/3986c793-2593-4924-bffa-aa061b95876d)
 3) *Optional:* If you would like to insert some test data, you can do so on [the appropriate page in phpMyAdmin](http://localhost/phpmyadmin/index.php?route=/table/change&db=keycloak&table=booking). You can even insert more than two rows at once by using increasing the number of insertions, using the control marked in green.
 ![grafik](https://github.com/k12119624/eventmgr/assets/122382776/bd78da4e-8e5e-4a30-b091-81205684357b)
-
+4) If something changes about our database in the future, you may need to execute these steps again.
 
 
