@@ -25,3 +25,6 @@ The repo should be cloned directly into the folder ```C:\xampp\htdocs```
 10) If you can log into Keycloak using the username "_admin_" and the password "_admin_", everything should be fine.
 11) There is no need for further configuration, as the demo-realm and demo_client have been imported automatically.
 12) If the Keycloak configuration changes in the future, you may need to execute these steps again.
+
+## Setting up the database
+For now, we're simply creating our single table inside the same database as keycloak.
