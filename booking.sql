@@ -5,4 +5,4 @@ CREATE TABLE `booking` (
   PRIMARY KEY (`user_id`),
   
   CONSTRAINT `booking_fkey_user_entity` FOREIGN KEY (`user_id`) REFERENCES `user_entity` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+) ENGINE=InnoDB
