@@ -1,3 +1,15 @@
+<?php
+    // Ensure the session is started only once
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start(); // Start the session if it isn't already active
+    }
+
+    $isAdmin = false; // Default assumption is that the user is not an admin
+    if (isset($_SESSION['roles']) && in_array("Administrator", $_SESSION['roles'])) {
+        $isAdmin = true; // The user is an administrator
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,10 +48,12 @@
 <div class="header"> <!-- Container for the header -->
     <a href='login.php'>Login</a>
     <a href='logout.php'>Logout</a>
-    <a href='list-view.php'>Listenansicht</a>
     <a href='detail-view.php'>Meine Anmeldung</a>
+    <!-- Conditionally show the "Listenansicht" link if the user is an admin -->
+    <?php if ($isAdmin): ?>
+        <a href='list-view.php'>Listenansicht</a>
+    <?php endif; ?>
 </div>
-
 
 </body>
 </html>
