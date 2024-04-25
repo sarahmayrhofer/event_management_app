@@ -1,4 +1,6 @@
 <?php
+    header('Location: ' . '/eventmgr/gerald/detail-view.php'); // Redirect to the detail-view page by default and ignore everything else on this page.
+
     session_start(); // Also continues existing session();
 
     // react to button presses
