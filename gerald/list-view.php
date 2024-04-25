@@ -16,7 +16,7 @@
     }
 
     $sql = "SELECT * FROM user_entity WHERE id=?";
-    $statement = $mysqli->prepare($sql);
+    $statement = $conn->prepare($sql);
 ?>
 
 <!DOCTYPE html>
