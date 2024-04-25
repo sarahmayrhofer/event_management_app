@@ -21,8 +21,16 @@
     if (isset($_SESSION['userId'])) { // Check if the user is logged in
         $userId = $_SESSION['userId']; // Retrieve the user ID from the session
 
+        $userName=$_SESSION['preferred_username']; // <--------------------------------------------------------------------------------
+        /*                                                                                                                            |
+         * GERALD: Please don't access the user_entity table directly from the application logic. If you need any info from Keycloak, |
+         * it should be queried in login.php and stored in the session info. Do this -------------------------------------------------|
+         * instead.
+         * NOTE: In my humble opinion, i'd prefer to showthe user name, instead of the given name of the user. However, if you strongly disagree, I've also saved the first name as 'given_name'.
+         * BTW: For more info on the information we can get from Keycloak, kindly see https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+        */
         // Fetch the user's details from the database
-        $sql = "SELECT first_name FROM user_entity WHERE id = ?";
+        /*$sql = "SELECT first_name FROM user_entity WHERE id = ?";
         $stmt = $conn->prepare($sql);
 
         if ($stmt) {
@@ -36,13 +44,14 @@
             }
 
             $stmt->close(); // Close the prepared statement
-        }
+        }*/
 
         // Check if the logged-in user is an administrator
         if (isset($_SESSION['roles']) && in_array("Administrator", $_SESSION['roles'])) {
             $isAdmin = true; // The user is an administrator
         }
 
+        // GERALD: This, on the other hand, is perfectly fine, as the booking table belongs to our application, not Keycloak.
         // Fetch the booking information to get the current number of participants
         $sql = "SELECT no_participants FROM booking WHERE user_id = ?";
         $stmt = $conn->prepare($sql);
