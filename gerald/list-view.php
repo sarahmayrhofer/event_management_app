@@ -33,15 +33,13 @@
     <?php include 'header-bar.php' ?>
     <h1>Listenansicht</h1>
     <?php
-
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                echo "User ID: " . $row["user_id"]. " - No. of Participants: " . $row["no_participants"]. " - Last Updated: " . $row["last_updated"]. "<br>";
+                echo "User ID: <a href='detail-view.php?user_id=" . $row["user_id"] . "'>" . $row["user_id"] . "</a> - No. of Participants: " . $row["no_participants"]. " - Last Updated: " . $row["last_updated"]. "<br>";
             }
         } else {
             echo "0 results";
         }
-        
     ?>
 </body>
 </html>
