@@ -1,5 +1,5 @@
 <?php
-    header('Location: ' . '/eventmgr/gerald/detail-view.php'); // Redirect to the detail-view page by default and ignore everything else on this page.
+    header('Location: ' . 'login.php'); // Redirect to the login page by default and ignore everything else on this page.
 
     session_start(); // Also continues existing session();
 
