@@ -8,6 +8,18 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
+    if(isset($_POST['no_participants'])) {
+        doInsert();
+    }
+
+    if(isset($_POST['no_participants'])) {
+        doUpdate();
+    }
+
+    if(isset($_POST['buttonname??'])) {
+        doDelete();
+    }
+
     $userName = "Guest"; // Default name for non-authenticated users
     $isAdmin = false; // Default assumption is that the user is not an admin
     $currentParticipants = 1; // Default value if there's no booking
@@ -121,5 +133,27 @@
     <?php else: ?>
         <h1>You do not have permission to access this.</h1>
     <?php endif; ?>
+
+    <?php
+    function doInsert() {
+        $sql = "INSERT INTO booking (column1, column2, column3, ...) VALUES (value1, value2, value3, ...)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+    }
+
+    function doUpdate() {
+        $sql = "UPDATE FROM booking WHERE user_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $userId);
+        $stmt->execute();
+    }
+
+    function doDelete() {
+        $sql = "DELETE FROM booking WHERE user_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $userId);
+        $stmt->execute();
+    }
+    ?>
 </body>
 </html>
