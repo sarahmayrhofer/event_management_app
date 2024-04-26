@@ -2,12 +2,14 @@
     session_start();
 
     // Verbindung zur Datenbank herstellen (hier angenommen, dass XAMPP verwendet wird)
-    $servername = "localhost";
-    $username = "keycloak"; // Benutzername für XAMPP
-    $password = "keycloak"; // Passwort für XAMPP
-    $database = "keycloak"; // Name deiner Datenbank
+    //$servername = "localhost";
+    //$username = "keycloak"; // Benutzername für XAMPP
+    //$password = "keycloak"; // Passwort für XAMPP
+    //$database = "keycloak"; // Name deiner Datenbank
 
-    $conn = new mysqli($servername, $username, $password, $database);
+    //$conn = new mysqli($servername, $username, $password, $database);
+
+    include 'api.php';
 
     $isAdmin = false;
     if(isset($_SESSION['id'])) { # Prüfen, ob der Benutzer eingeloggt ist
@@ -16,8 +18,13 @@
         }
     }
 
+    echo $servername;
+    echo $username;
+    echo $password;
+    echo $dbname;
     $sql = "SELECT * FROM booking";
     $result = $conn->query($sql);
+    echo $sql;
 ?>
 
 <!DOCTYPE html>
