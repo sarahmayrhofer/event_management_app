@@ -1,19 +1,11 @@
 <?php
     session_start();
 
-    // Verbindung zur Datenbank herstellen (hier angenommen, dass XAMPP verwendet wird)
-    //$servername = "localhost";
-    //$username = "keycloak"; // Benutzername für XAMPP
-    //$password = "keycloak"; // Passwort für XAMPP
-    //$database = "keycloak"; // Name deiner Datenbank
-
-    //$conn = new mysqli($servername, $username, $password, $database);
-
-    include 'api.php';
+    require 'api.php';
 
     $isAdmin = false;
     if(isset($_SESSION['id'])) { # Prüfen, ob der Benutzer eingeloggt ist
-        if(str_contains(implode($_SESSION['roles']), 'Administrator')) { # Prüfen, ob "Administrator" zu den Rollen des Benutzers gehört
+        if(in_array("Administrator", $_SESSION['roles'])) { # Prüfen, ob "Administrator" zu den Rollen des Benutzers gehört
             $isAdmin = true;
         }
     }

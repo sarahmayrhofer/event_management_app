@@ -1,15 +1,7 @@
 <?php
     session_start();
-
-    // Establish a connection to the database
-    //$servername = "localhost";
-    //$username = "keycloak"; // Database username
-    //$password = "keycloak"; // Database password
-    //$database = "keycloak"; // Database name
-
-    //$conn = new mysqli($servername, $username, $password, $database);
-
-    include 'api.php';
+    
+    require 'api.php';
 
     // Check for database connection errors
     if ($conn->connect_error) {

@@ -14,7 +14,7 @@
         $_SESSION['given_name'] = $oidc->requestUserInfo('given_name');
         $_SESSION['preferred_username'] = $oidc->requestUserInfo('preferred_username');
 
-        if(str_contains(implode($_SESSION['roles']), 'Administrator')) { # Prüfen, ob "Administrator" zu den Rollen des Benutzers gehört
+        if(in_array("Administrator", $_SESSION['roles'])) { # Prüfen, ob "Administrator" zu den Rollen des Benutzers gehört
             header('Location: ' . 'list-view.php');
         } else {
             header('Location: ' . 'detail-view.php');

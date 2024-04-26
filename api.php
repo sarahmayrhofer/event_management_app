@@ -16,4 +16,3 @@ $dbname = $_ENV['DB_NAME'];
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Restlicher Code zur Datenbankverarbeitung
-?>
