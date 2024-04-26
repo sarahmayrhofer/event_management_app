@@ -1,3 +1,5 @@
+DROP TABLE `booking`;
+
 CREATE TABLE `booking` (
   `user_id` varchar(36) NOT NULL,
   `user_name` varchar(255) NOT NULL,
@@ -6,4 +8,4 @@ CREATE TABLE `booking` (
   PRIMARY KEY (`user_id`),
   
   CONSTRAINT `booking_fkey_user_entity` FOREIGN KEY (`user_id`) REFERENCES `user_entity` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB
+) ENGINE=InnoDB;
