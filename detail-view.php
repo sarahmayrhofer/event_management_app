@@ -8,18 +8,6 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    if(isset($_POST['no_participants'])) {
-        doInsert();
-    }
-
-    if(isset($_POST['no_participants'])) {
-        doUpdate();
-    }
-
-    if(isset($_POST['buttonname??'])) {
-        doDelete();
-    }
-
     $userName = "Guest"; // Default name for non-authenticated users
     $isAdmin = false; // Default assumption is that the user is not an admin
     $currentParticipants = 1; // Default value if there's no booking
@@ -63,18 +51,37 @@
         $sql = "SELECT * FROM booking WHERE user_id = ?";
         $stmt = $conn->prepare($sql);
 
+        $datumExists = false; // Assume that there is no database entry yet.
         if ($stmt) {
             $stmt->bind_param("s", $userId); // Bind the user ID
             $stmt->execute(); // Execute the query
             $result = $stmt->get_result(); // Get the result set
 
             if ($result->num_rows > 0) {
+                $datumExists = true;
+
                 $row = $result->fetch_assoc(); // Fetch the booking data
                 $userName = $row['user_name']; // Use user name from database if we already have a booking for this acccount.
                 $currentParticipants = $row['no_participants']; // Get the current number of participants
             }
 
             $stmt->close(); // Close the prepared statement
+        }
+
+        if(isset($_POST['no_participants'])) {
+            $newNoParticipants = $_POST['no_participants'];
+
+            if($datumExists) {
+                doUpdate($conn, $userId, $newNoParticipants);
+            } else {
+                doInsert($conn, $userId, $userName, $newNoParticipants);
+            }
+
+            $currentParticipants = $newNoParticipants;
+        }
+    
+        if(isset($_POST['buttonname??'])) {
+            doDelete($conn, $userId);
         }
     } else { // If the user is not logged in:
         header('Location: ' . 'login.php'); # Redirect to the login page
@@ -135,24 +142,39 @@
     <?php endif; ?>
 
     <?php
-    function doInsert() {
-        $sql = "INSERT INTO booking (column1, column2, column3, ...) VALUES (value1, value2, value3, ...)";
+    function doInsert($conn, $userId, $userName, $noParticipants) {
+        $sql = "INSERT INTO booking (user_id, user_name, no_participants) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        if($stmt) {
+            $stmt->bind_param("ssi", $userId, $userName, $noParticipants); // Bind the user ID (syntax for data type see https://www.php.net/manual/en/mysqli-stmt.bind-param.php)
+            if($stmt->execute()) {
+                // Success
+            }
+        }
     }
 
-    function doUpdate() {
-        $sql = "UPDATE FROM booking WHERE user_id = ?";
+    function doUpdate($conn, $userId, $noParticipants) {
+        $sql = "UPDATE booking SET no_participants=? WHERE user_id=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $userId);
-        $stmt->execute();
+        if($stmt) {
+            $stmt->bind_param("is", $noParticipants, $userId);
+            if($stmt->execute()) {
+                // Success
+            }
+        }
+        
     }
 
-    function doDelete() {
+    function doDelete($conn, $userId) {
         $sql = "DELETE FROM booking WHERE user_id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("s", $userId);
-        $stmt->execute();
+        if($stmt) {
+            $stmt->bind_param("s", $userId);
+            if($stmt->execute()) {
+                // Success
+            }
+        }
+        
     }
     ?>
 </body>
