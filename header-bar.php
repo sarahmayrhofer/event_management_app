@@ -48,7 +48,7 @@
 <div class="header"> <!-- Container for the header -->
     <a href='login.php'>Login</a>
     <a href='logout.php'>Logout</a>
-    <a href='detail-view.php'>Meine Anmeldung</a>
+    <a href='detail-view.php?user_id=<?php echo htmlspecialchars($_SESSION['userId']) ?>'>Meine Anmeldung</a>
     <!-- Conditionally show the "Listenansicht" link if the user is an admin -->
     <?php if ($isAdmin): ?>
         <a href='list-view.php'>Listenansicht</a>

@@ -17,7 +17,7 @@
         if(in_array("Administrator", $_SESSION['roles'])) { # Prüfen, ob "Administrator" zu den Rollen des Benutzers gehört
             header('Location: ' . 'list-view.php');
         } else {
-            header('Location: ' . 'detail-view.php');
+            header('Location: ' . 'detail-view.php?user_id=' . htmlspecialchars($_SESSION['userId']));
         }
     }
 ?>

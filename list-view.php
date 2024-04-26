@@ -9,16 +9,11 @@
             $isAdmin = true;
         }
     } else { # Wenn der Benutzer nicht eingeloggt ist:
-        header('Location: ' . 'login.php'); # Auf Login-Seite weiterleiten.
+        header('Location: ' . 'login.php'); # Auf die Login-Seite weiterleiten.
     }
 
-    echo $servername;
-    echo $username;
-    echo $password;
-    echo $dbname;
     $sql = "SELECT * FROM booking";
     $result = $conn->query($sql);
-    echo $sql;
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +31,7 @@
         if ($isAdmin) {
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    echo "User ID: <a href='detail-view.php?user_id=" . $row["user_id"] . "'>" . $row["user_id"] . "</a> - No. of Participants: " . $row["no_participants"]. " - Last Updated: " . $row["last_updated"]. "<br>";
+                    echo "User ID: <a href='detail-view.php?user_id=" . $row["user_id"] . "'>" . $row["user_id"] . "</a> - User name: " . $row['user_name'] . " -  No. of Participants: " . $row["no_participants"]. " - Last Updated: " . $row["last_updated"]. "<br>";
                 }
             } else {
                 echo "0 results";
