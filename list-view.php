@@ -8,6 +8,8 @@
         if(in_array("Administrator", $_SESSION['roles'])) { # Prüfen, ob "Administrator" zu den Rollen des Benutzers gehört
             $isAdmin = true;
         }
+    } else { # Wenn der Benutzer nicht eingeloggt ist:
+        header('Location: ' . 'login.php'); # Auf Login-Seite weiterleiten.
     }
 
     echo $servername;
