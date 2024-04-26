@@ -9,16 +9,15 @@
 
     $conn = new mysqli($servername, $username, $password, $database);
 
+    $isAdmin = false;
     if(isset($_SESSION['id'])) { # Prüfen, ob der Benutzer eingeloggt ist
         if(str_contains(implode($_SESSION['roles']), 'Administrator')) { # Prüfen, ob "Administrator" zu den Rollen des Benutzers gehört
-
+            $isAdmin = true;
         }
     }
 
-
     $sql = "SELECT * FROM booking";
     $result = $conn->query($sql);
-    
 ?>
 
 <!DOCTYPE html>
@@ -33,12 +32,16 @@
     <?php include 'header-bar.php' ?>
     <h1>Listenansicht</h1>
     <?php
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                echo "User ID: <a href='detail-view.php?user_id=" . $row["user_id"] . "'>" . $row["user_id"] . "</a> - No. of Participants: " . $row["no_participants"]. " - Last Updated: " . $row["last_updated"]. "<br>";
+        if ($isAdmin) {
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "User ID: <a href='detail-view.php?user_id=" . $row["user_id"] . "'>" . $row["user_id"] . "</a> - No. of Participants: " . $row["no_participants"]. " - Last Updated: " . $row["last_updated"]. "<br>";
+                }
+            } else {
+                echo "0 results";
             }
         } else {
-            echo "0 results";
+            echo "Sie sind nicht berechtigt, diese Seite zu sehen.";
         }
     ?>
 </body>
