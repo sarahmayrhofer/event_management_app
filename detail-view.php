@@ -12,6 +12,7 @@
     $isAdmin = false; // Default assumption is that the user is not an admin
     $currentParticipants = 1; // Default value if there's no booking
     $accessPermitted = false; // Default assumption is that the user is NOT permitted to view the page.
+    $isOwnBooking = true; // Default assumption is that the user is editing their own booking.
 
     $userId = null;
 
@@ -28,11 +29,15 @@
 
         $sessionUserId = $_SESSION['userId']; // Retrieve id of logged-in user from session information
 
+        if(strcmp($userId, $sessionUserId) != 0) {
+            $isOwnBooking = false;
+        }
+
         // We're always allowed to access our own booking
         if($userId == null) { // If no URL parameter was specified for the user id
             $userId = $sessionUserId; // Default to the user id of the logged-in user
             $accessPermitted = true;
-        } else if(strcmp($userId, $sessionUserId) == 0) { // If we're trying to look at our own booking:
+        } else if($isOwnBooking) { // If we're trying to look at our own booking:
             $accessPermitted = true;
         }
 
@@ -75,16 +80,23 @@
                 doUpdate($conn, $userId, $newNoParticipants);
             } else {
                 doInsert($conn, $userId, $userName, $newNoParticipants);
+                $datumExists = true;
             }
 
             $currentParticipants = $newNoParticipants;
         }
     
-        if(isset($_POST['buttonname??'])) {
+        if(isset($_POST['deleteButton'])) {
             doDelete($conn, $userId);
+            $currentParticipants = 0;
+            $datumExists = false;
+
+            if(!$isOwnBooking) {
+                header('Location: ' . 'list-view.php'); // Redirect to the list view
+            }
         }
     } else { // If the user is not logged in:
-        header('Location: ' . 'login.php'); # Redirect to the login page
+        header('Location: ' . 'login.php'); // Redirect to the login page
     }
 
     $conn->close(); // Close the database connection
@@ -131,11 +143,17 @@
             <h2>Greetings and thank you for wanting to join our awesome event on the 11th of May! Just tell us how many friends you are bringing along, so we can plan accordingly.</h2>
 
             <!-- Form for booking with prefilled value -->
-            <form action="" method="post"> <!-- Form to submit the number of participants -->
+            <form method="post"> <!-- Form to submit the number of participants -->
                 <label for="no_participants">Number of Participants:</label>
                 <input type="number" name="no_participants" id="no_participants" min="1" required value="<?php echo htmlspecialchars($currentParticipants); ?>"> <!-- Prefill with the current value -->
                 <button type="submit">Book</button>
             </form>
+            <?php if ($datumExists): ?>
+                <form method="post">
+                    <button type="submit" name="deleteButton">Delete</button>
+                </form>
+            <?php endif; ?>
+
         </div>
     <?php else: ?>
         <h1>You do not have permission to access this.</h1>
