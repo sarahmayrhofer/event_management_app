@@ -20,6 +20,8 @@
             header('Location: ' . 'detail-view.php?user_id=' . htmlspecialchars($_SESSION['userId']));
         }
     }
+
+    die(); // Stop the PHP processor in case the receiver does not respect the header.
 ?>
 
 <!DOCTYPE html>

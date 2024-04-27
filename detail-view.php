@@ -93,10 +93,12 @@
 
             if(!$isOwnBooking) {
                 header('Location: ' . 'list-view.php'); // Redirect to the list view
+                die(); // Stop the PHP processor in case the receiver does not respect the header.
             }
         }
     } else { // If the user is not logged in:
         header('Location: ' . 'login.php'); // Redirect to the login page
+        die(); // Stop the PHP processor in case the receiver does not respect the header.
     }
 
     $conn->close(); // Close the database connection

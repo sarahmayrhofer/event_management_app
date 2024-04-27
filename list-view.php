@@ -10,6 +10,7 @@
         }
     } else { # If the user is not logged in:
         header('Location: ' . 'login.php'); # Redirect to login page
+        die(); // Stop the PHP processor in case the receiver does not respect the header.
     }
 
     $sql = "SELECT * FROM booking";
@@ -26,7 +27,7 @@
 <body>
     <!-- Dynamically include header bar -->
     <?php include 'header-bar.php' ?>
-    <h1>ALl Registrations</h1>
+    <h1>All Registrations</h1>
     <?php
         if ($isAdmin) {
             if ($result->num_rows > 0) {

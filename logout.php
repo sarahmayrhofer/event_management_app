@@ -9,3 +9,4 @@
     }
 
     header('Location: ' . 'detail-view.php'); // If we're already logged out, also return to the detail view.
+    die(); // Stop the PHP processor in case the receiver does not respect the header.
