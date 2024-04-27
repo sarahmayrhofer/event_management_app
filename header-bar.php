@@ -46,12 +46,12 @@
 
 <!-- Header using Flexbox -->
 <div class="header"> <!-- Container for the header -->
-    <a href='/eventmgr/gerald/login.php'>Login</a>
-    <a href='/eventmgr/gerald/logout.php'>Logout</a>
-    <a href='/eventmgr/gerald/detail-view.php'>Meine Anmeldung</a>
+    <a href='login.php'>Login</a>
+    <a href='logout.php'>Logout</a>
+    <a href='detail-view.php?user_id=<?php echo htmlspecialchars($_SESSION['userId']) ?>'>My Booking</a>
     <!-- Conditionally show the "Listenansicht" link if the user is an admin -->
     <?php if ($isAdmin): ?>
-        <a href='/eventmgr/gerald/list-view.php'>Listenansicht</a>
+        <a href='list-view.php'>List view</a>
     <?php endif; ?>
 </div>
 
