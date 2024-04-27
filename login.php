@@ -9,7 +9,6 @@
 
         $_SESSION['userId'] = $oidc->requestUserInfo('sub');
         $_SESSION['roles'] = $oidc->requestUserInfo('roles');
-        $_SESSION['given_name'] = $oidc->requestUserInfo('given_name');
         $_SESSION['preferred_username'] = $oidc->requestUserInfo('preferred_username');
 
         if(in_array("Administrator", $_SESSION['roles'])) { # Prüfen, ob "Administrator" zu den Rollen des Benutzers gehört

@@ -47,7 +47,7 @@
          */
         $userName=$_SESSION['preferred_username'];
         /*
-         * NOTE: In my humble opinion, i'd prefer to show the user name, instead of the given name of the user. However, if you strongly disagree, I've also saved the first name as 'given_name'.
+         * NOTE: In my humble opinion, i'd prefer to show the user name, instead of the given name of the user.
          * BTW: For more info on the information we can get from Keycloak, kindly see https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
         */
 
