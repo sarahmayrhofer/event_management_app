@@ -6,13 +6,11 @@
     $dotenv = Dotenv::createImmutable(__DIR__);
     $dotenv->load();
 
-    // Verwendung der Umgebungsvariablen
+    // Using Environment Variables
     $servername = $_ENV['DB_SERVER'];
     $username = $_ENV['DB_USERNAME'];
     $password = $_ENV['DB_PASSWORD'];
     $dbname = $_ENV['DB_NAME'];
 
-    // Verbindung zur MySQL-Datenbank herstellen
+    // Establish connection to MySQL database
     $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Restlicher Code zur Datenbankverarbeitung

@@ -4,12 +4,12 @@
     require 'api.php';
 
     $isAdmin = false;
-    if(isset($_SESSION['id'])) { # Prüfen, ob der Benutzer eingeloggt ist
-        if(in_array("Administrator", $_SESSION['roles'])) { # Prüfen, ob "Administrator" zu den Rollen des Benutzers gehört
+    if(isset($_SESSION['id'])) { # Check if the user is logged in
+        if(in_array("Administrator", $_SESSION['roles'])) { # Check if "Administrator" is among the user's roles
             $isAdmin = true;
         }
-    } else { # Wenn der Benutzer nicht eingeloggt ist:
-        header('Location: ' . 'login.php'); # Auf die Login-Seite weiterleiten.
+    } else { # If the user is not logged in:
+        header('Location: ' . 'login.php'); # Redirect to login page
     }
 
     $sql = "SELECT * FROM booking";
@@ -21,12 +21,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listenansicht</title>
+    <title>All Registrations</title>
 </head>
 <body>
-    <!-- Titelleiste dynamisch einbinden -->
+    <!-- Dynamically include header bar -->
     <?php include 'header-bar.php' ?>
-    <h1>Listenansicht</h1>
+    <h1>ALl Registrations</h1>
     <?php
         if ($isAdmin) {
             if ($result->num_rows > 0) {
@@ -37,7 +37,7 @@
                 echo "0 results";
             }
         } else {
-            echo "Sie sind nicht berechtigt, diese Seite zu sehen.";
+            echo "You do not have permission to access this.";
         }
     ?>
 </body>
