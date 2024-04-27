@@ -51,7 +51,7 @@
     <a href='detail-view.php?user_id=<?php echo htmlspecialchars($_SESSION['userId']) ?>'>My Booking</a>
     <!-- Conditionally show the "Listenansicht" link if the user is an admin -->
     <?php if ($isAdmin): ?>
-        <a href='list-view.php'>List view</a>
+        <a href='list-view.php'>All Bookings</a>
     <?php endif; ?>
 </div>
 

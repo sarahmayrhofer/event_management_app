@@ -22,12 +22,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Registrations</title>
+    <title>All Bookings</title>
 </head>
 <body>
     <!-- Dynamically include header bar -->
     <?php include 'header-bar.php' ?>
-    <h1>All Registrations</h1>
+    <h1>All Bookings</h1>
     <?php
         if ($isAdmin) {
             if ($result->num_rows > 0) {
