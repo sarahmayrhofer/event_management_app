@@ -17,6 +17,8 @@
     $result = $conn->query($sql);
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +34,16 @@
         if ($isAdmin) {
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    echo "User ID: <a href='detail-view.php?user_id=" . $row["user_id"] . "'>" . $row["user_id"] . "</a> - User name: " . $row['user_name'] . " -  No. of Participants: " . $row["no_participants"]. " - Last Updated: " . $row["last_updated"]. "<br>";
+                    echo "User ID: ";
+                    echo "<a href='detail-view.php?user_id=" . $row["user_id"] . "'>";
+                    echo $row["user_id"];
+                    echo "</a> - User name: ";
+                    echo $row['user_name'];
+                    echo " -  No. of Participants: ";
+                    echo $row["no_participants"];
+                    echo " - Last Updated: ";
+                    echo $row["last_updated"];
+                    echo "<br>";
                 }
             } else {
                 echo "0 results";
@@ -43,3 +54,4 @@
     ?>
 </body>
 </html>
+?>
