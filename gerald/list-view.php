@@ -1,35 +1,43 @@
 <?php
     session_start();
 
-    require 'api.php';
+    // Verbindung zur Datenbank herstellen (hier angenommen, dass XAMPP verwendet wird)
+    //$servername = "localhost";
+    //$username = "keycloak"; // Benutzername für XAMPP
+    //$password = "keycloak"; // Passwort für XAMPP
+    //$database = "keycloak"; // Name deiner Datenbank
+
+    //$conn = new mysqli($servername, $username, $password, $database);
+
+    include 'api.php';
 
     $isAdmin = false;
-    if(isset($_SESSION['id'])) { # Check if the user is logged in
-        if(in_array("Administrator", $_SESSION['roles'])) { # Check if "Administrator" is among the user's roles
+    if(isset($_SESSION['id'])) { # Prüfen, ob der Benutzer eingeloggt ist
+        if(str_contains(implode($_SESSION['roles']), 'Administrator')) { # Prüfen, ob "Administrator" zu den Rollen des Benutzers gehört
             $isAdmin = true;
         }
-    } else { # If the user is not logged in:
-        header('Location: ' . 'login.php'); # Redirect to login page
-        die(); // Stop the PHP processor in case the receiver does not respect the header.
     }
 
+    echo $servername;
+    echo $username;
+    echo $password;
+    echo $dbname;
     $sql = "SELECT * FROM booking";
     $result = $conn->query($sql);
+    echo $sql;
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Bookings</title>
+    <title>Listenansicht</title>
 </head>
 <body>
-    <!-- Dynamically include header bar -->
+    <!-- Titelleiste dynamisch einbinden -->
     <?php include 'header-bar.php' ?>
-    <h1>All Bookings</h1>
+    <h1>Listenansicht</h1>
     <?php
         if ($isAdmin) {
             if ($result->num_rows > 0) {
@@ -37,9 +45,7 @@
                     echo "User ID: ";
                     echo "<a href='detail-view.php?user_id=" . $row["user_id"] . "'>";
                     echo $row["user_id"];
-                    echo "</a> - User name: ";
-                    echo $row['user_name'];
-                    echo " -  No. of Participants: ";
+                    echo "</a> - No. of Participants: ";
                     echo $row["no_participants"];
                     echo " - Last Updated: ";
                     echo $row["last_updated"];
@@ -49,9 +55,8 @@
                 echo "0 results";
             }
         } else {
-            echo "You do not have permission to access this.";
+            echo "Sie sind nicht berechtigt, diese Seite zu sehen.";
         }
     ?>
 </body>
 </html>
-?>
