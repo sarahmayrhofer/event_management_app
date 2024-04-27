@@ -8,4 +8,4 @@
         $oidc->signOut($sessionId, 'https://localhost:443/eventmgr/detail-view.php');
     }
 
-    header('Location: ' . 'index.php'); // If we're already logged out, return to the main page.
+    header('Location: ' . 'detail-view.php'); // If we're already logged out, also return to the detail view.
