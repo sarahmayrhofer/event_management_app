@@ -35,14 +35,14 @@
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     echo "User ID: ";
-                    echo "<a href='detail-view.php?user_id=" . $row["user_id"] . "'>";
-                    echo $row["user_id"];
+                    echo "<a href='detail-view.php?user_id=" . htmlspecialchars($row["user_id"]) . "'>";
+                    echo htmlspecialchars($row["user_id"]);
                     echo "</a> - User name: ";
-                    echo $row['user_name'];
+                    echo htmlspecialchars($row['user_name']);
                     echo " -  No. of Participants: ";
-                    echo $row["no_participants"];
+                    echo htmlspecialchars($row["no_participants"]);
                     echo " - Last Updated: ";
-                    echo $row["last_updated"];
+                    echo htmlspecialchars($row["last_updated"]);
                     echo "<br>";
                 }
             } else {
